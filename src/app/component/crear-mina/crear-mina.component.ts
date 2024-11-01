@@ -4,12 +4,12 @@ import { MinaService } from '../../service/mina.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { CommonModule } from '@angular/common';
-import { BrowserModule } from '@angular/platform-browser';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { provideNativeDateAdapter, MatNativeDateModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
-import { MatNativeDateModule } from '@angular/material/core';
+
 
 @Component({
   selector: 'app-crear-mina',
@@ -24,6 +24,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatFormFieldModule,
     ReactiveFormsModule,
   ],
+  providers: [provideNativeDateAdapter()],
   templateUrl: './crear-mina.component.html',
   styleUrls: ['./crear-mina.component.css']
 })
@@ -46,7 +47,7 @@ export class CrearMinaComponent {
 
   registrarMina() {
     if (this.minaForm.valid) {
-      this.minaService.registrarMina(this.minaForm.value).subscribe(
+        this.minaService.registrarMina(this.minaForm.value).subscribe(
         response => {
           this.snackBar.open('Mina registrada exitosamente', 'Cerrar', { duration: 3000 });
           this.minaForm.reset();
@@ -58,4 +59,3 @@ export class CrearMinaComponent {
     }
   }
 }
-

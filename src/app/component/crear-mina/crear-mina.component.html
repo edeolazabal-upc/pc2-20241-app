@@ -1,31 +1,31 @@
 <div class="container">
-    <h2>Registrar Mina</h2>
-    <form [formGroup]="minaForm" (ngSubmit)="registrarMina()">
-      <mat-form-field appearance="outline">
-        <mat-label>Nombre</mat-label>
-        <input matInput formControlName="nombre" required />
-      </mat-form-field>
-  
-      <mat-form-field appearance="outline">
-        <mat-label>Fecha de Inicio</mat-label>
-        <input matInput [matDatepicker]="picker" formControlName="fechaInicio" required />
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-      </mat-form-field>
-  
-      <mat-form-field appearance="outline">
-        <mat-label>Tipo</mat-label>
-        <mat-select formControlName="tipo" required>
-          <mat-option *ngFor="let tipo of tiposMina" [value]="tipo">{{ tipo }}</mat-option>
-        </mat-select>
-      </mat-form-field>
-  
-      <mat-form-field appearance="outline">
-        <mat-label>Toneladas Producidas</mat-label>
-        <input matInput formControlName="tonsProducidas" type="number" />
-      </mat-form-field>
-  
-      <button mat-raised-button color="primary" type="submit" [disabled]="minaForm.invalid">Registrar</button>
-    </form>
-  </div>
-  
+  <h2>Registrar Mina</h2>
+  <form [formGroup]="minaForm" (ngSubmit)="registrarMina()">
+    <mat-form-field appearance="outline">
+      <mat-label>Nombre</mat-label>
+      <input matInput formControlName="nombre" required />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Fecha de Inicio</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="fechaInicio" required />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Tipo</mat-label>
+      <mat-select formControlName="tipo" required>
+        <mat-option *ngFor="let tipo of tiposMina" [value]="tipo">{{ tipo }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Toneladas Producidas</mat-label>
+      <input matInput formControlName="tonsProducidas" type="number" />
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit" [disabled]="minaForm.invalid">Registrar</button>
+  </form>
+</div>
+

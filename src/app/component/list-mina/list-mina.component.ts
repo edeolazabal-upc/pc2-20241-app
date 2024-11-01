@@ -1,11 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MinaService } from '../../service/mina.service';
 import { Mina } from '../../model/mina';
-import { MatTableModule } from '@angular/material/table';
-import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-
 
 @Component({
   selector: 'app-listar-mina',
@@ -19,27 +18,23 @@ import { Router } from '@angular/router';
   styleUrls: ['./list-mina.component.css']
 })
 export class ListarMinaComponent implements OnInit {
-  minas: Mina[] = [];
-  pageSize = 3;
-  pageIndex = 0;
+  displayedColumns: string[] = ['nombre', 'fechaInicio', 'tipo'];
+  dataSource = new MatTableDataSource<Mina>();
+
+  @ViewChild(MatPaginator) paginator!: MatPaginator; // Configuración del paginator
 
   constructor(private minaService: MinaService, private router: Router) { }
 
   ngOnInit() {
-    this.cargarMinas(this.pageIndex, this.pageSize);
+    this.cargarMinas();
   }
 
-  cargarMinas(page: number, size: number) {
-    this.minaService.listarMinas(page, size).subscribe(
-      response => this.minas = response,
-      error => console.error('Error al listar minas', error)
-    );
-  }
-
-  cambiarPagina(event: any) {
-    this.pageIndex = event.pageIndex;
-    this.pageSize = event.pageSize;
-    this.cargarMinas(this.pageIndex, this.pageSize);
+  cargarMinas() {
+    this.minaService.listarMinas().subscribe(
+      (response: Mina[]) => {
+        this.dataSource.data = response;
+        this.dataSource.paginator = this.paginator;
+        this.paginator._changePageSize(3); // Cambia el tamaño de página a 3 registros
+      });
   }
 }
-

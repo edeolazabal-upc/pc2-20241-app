@@ -21,7 +21,7 @@ export class MinaService {
    }
 
    // Método para listar minas con paginación
-   listarMinas(page: number, size: number): Observable<Mina[]> {
-      return this.http.get<Mina[]>(`${this.apiUrl}?page=${page}&size=${size}`);
+   listarMinas(): Observable<Mina[]> {
+      return this.http.get<Mina[]>(`${this.apiUrl}`);
    }
 }
