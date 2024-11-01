@@ -9,7 +9,7 @@ import { Mina } from '../model/mina';
    providedIn: 'root'
 })
 export class MinaService {
-   private apiUrl = 'http://localhost:8080/api/minas'; // URL del backend de Spring Boot
+   private apiUrl = 'http://localhost:8080/api/mina'; // URL del backend de Spring Boot
 
    constructor(private http: HttpClient) { }
 
